@@ -7,9 +7,7 @@ name: windows-2019
 #
 # see https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#permissions
 permissions:
-  contents: read
-
-concurrency:
+  contents: rea
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
@@ -23,8 +21,7 @@ jobs:
     uses: ./.github/workflows/.dco.yml
 
   test-prepare:
-    uses: ./.github/workflows/.test-prepare.yml
-    needs:
+    uses: ./.github/workflows/.test-prepare.y
       - validate-dco
 
   run:
@@ -35,8 +32,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        storage: ${{ fromJson(needs.test-prepare.outputs.matrix) }}
-    with:
+        storage: ${{ fromJson(needs.test-p
       os: windows-2019
       storage: ${{ matrix.storage }}
       send_coverage: false
